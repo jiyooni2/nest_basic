@@ -1,0 +1,168 @@
+TypeScript
+    JS + type
+    make editor auto-complete by adding type
+
+    add type to variable
+        let helloWorld = "Hello World";      
+        let helloWorld: string    
+    
+    add type to object
+
+    interface User {
+        name: string;
+        id: number;
+    }
+    const user:User = {
+        name: "Hayes",
+        id: 0,
+    };  
+    
+    if type does not match, compile error
+
+
+    add type to class
+    
+    interface User {
+        name: string;
+        id: number;
+    }
+
+    class UserAccount {
+        name: string;
+        id: number;
+
+        constructor(name: string, id: number) {
+            this.name = name;
+            this.id = id;
+        }
+    }
+
+    const user: User = new UserAccount("Murphy", 1);
+
+    add type to function return values
+    
+    function getAdminUser(): User {
+     //...
+    }
+ 
+    types
+    : boolean, bigint, null, number, string, symbol, and undefined
+    any(allow anything), unknown, never, void(a function which returns undefined or no value)
+
+    Composing types
+        type MyBool = true | false;
+        type WindowStates = "open" | "closed" | "minimized";
+        function getLength(obj: string | string[]) {
+             return obj.length;
+        }
+
+    Generics
+        provide variables to types
+        An array without generics contain anything in JS
+        Buy, array with generics can describe the values that the array contains
+        
+        type StringArray = Array<string>;
+        type ObjectWithNameArray = Array<{ name: string }>;        
+
+        can declare your own types that use Generics
+
+        Backpack이라는 가방 있다고 생각
+        interface Backpack<Type> {
+        add: (obj: Type) => void;
+        get: () => Type;
+        }
+        
+        // This line is a shortcut to tell TypeScript there is a
+        // constant called `backpack`, and to not worry about where it came from.
+        declare const backpack: Backpack<string>;
+        
+        // object is a string, because we declared it above as the variable part of Backpack.
+        const object = backpack.get();
+        
+        // Since the backpack variable is a string, you can't pass a number to the add function.
+        backpack.add(23);
+
+
+    The shape-matching only requires a subset of the object’s fields to match.
+        만약, interface에서 x,y만 타입을 정의했다면,
+        const rect = { x: 33, y: 3, width: 30, height: 80 };
+        이런 것도, 매칭됨
+
+
+
+
+
+NestJS : 100% TS
+    node.js위에서 움직이는 프레임 워크
+    use express
+    express : 모든 node.js 애플리케이션의 초석이 되는 프레임워크
+    Spring : Java언어로 쉽게 서버를 구축할 수 있게 해줌
+    마찬가지.
+    Nest.js도 Nodejs로 쉽게 서버를 구축할 수 있음
+    NodeJs : No rules, free
+    NestJs : have rule, structure
+    100% TS로 구성
+
+Insomnia Rest
+    testing API
+
+Installation
+    npm i -g @nestjs/cli
+    nest new project-new
+
+decorator
+    class에 함수 기능을 추가할 수 있음
+    클래스 위에 decorator를 써서, 함수를 추가
+    꾸며주는 함수나 클래스와 붙어 있어야 함
+
+Module
+    Application의 일부분, 한가지의 역할만 하는 mini-app
+    AppModule : Root Module
+
+Controller
+    url을 가져오고 함수를 실행
+    express의 Router같은 존재
+    @Get(url), POST하면 POST request
+        GET decorator
+        express의 get router와 같은 역할
+
+nest cli
+    command line으로 NestJS의 여러가지를 조작 가능
+    만약 Controller를 만들고 싶다면, nest g co 입력시,
+    자동으로 app.controller와 app.module에 추가시켜줌
+
+@Controller("name")
+    controller를 위한 url을 만듦
+    name이 url의 entry point를 control
+    
+    @Get('/:id') : same as the express
+
+    무언가 필요하면, 요청해야함
+        getOne(@Param('id') movieId: string)
+        using @Parma decorator, get Params
+
+
+HTML Method
+    GET : 요청받은 URI의 정보를 검색하여 응답, query
+        use body in GET request : no semantic meaning for server
+    POST : 요청된 자원을 생성, body
+    PUT : 요청된 자원 update, 리소스 전부 교체
+    PATCH : 요청된 자원 update, 리소스의 일부를 교체
+
+@Body
+    Body를 받을 수 있음
+    json을 return할 수 있음.
+    body를 json으로 return 하려면 몇가지 configure이 필요했음
+    자동으로 해줌
+
+Controller
+    express와 마찬가지로, 위에서부터 url matching check
+    순서 유의하자
+
+Service
+    nest g s
+        add to providers automatically
+    
+
++number(string)
+    convert string to number
