@@ -212,4 +212,31 @@ NestJS runs on top of the express and fastify
     
     fastify가 성능 훨씬 좋음(약 2배)
 
+NestJS Testing(Jest)
+    .spec.ts : 테스트를 포함한 파일
+    A.ts testing => A.spec.ts
+
+Unit testing, e2e test
+    unit : 서비스에서 분리된 유닛(기능/함수)을 테스팅
+    e2e : whole system test
+
+test:watch(jest --watch)
+    test 변할때마다 실행
+test:cov
+    coverage, 얼마나 많은 부분 testing 하는지
+
+Jest
+    describe("title") : testing 주제를 묶는 느낌, 제목
+    beforeEach : 각 테스트가 실행되기 전 실행되는 코드
+
+    
+
+    it(Individual test)
+    it("name",testing function);
+
+    in testing function,
+        expect(result).toBeInstanceOf(Array);
+        expect(value).function("");
+
+        값이 무엇이 되어야 하는지에 대한 테스팅
 
